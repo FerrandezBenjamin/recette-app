@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
+            $table->string('dishes_name');
+            $table->text('dishes_description');
+            $table->string('dishes_image_path')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
