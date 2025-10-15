@@ -29,7 +29,7 @@ class DishCreatedNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Votre recette est en ligne !')
             ->greeting('Bonjour ' . $notifiable->name)
-            ->line('Votre recette "' . $this->dish->name . '" est maintenant publiée sur le site.')
-            ->action('Voir ma recette', url('/dishes/' . $this->dish->id));
+            ->line('Votre recette "' . $this->dish->getNameDish() . '" est maintenant disponible !')
+            ->action('Voir ma recette', url('/dishes/' . $this->dish->getDishId()));
     }
 }

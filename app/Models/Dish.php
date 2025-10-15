@@ -20,7 +20,7 @@ class Dish extends Model
 
     public function getCreateur()
     {
-        return $this->user ? $this->user->getName() : "Inconnu";
+        return $this->user ? $this->user->getFullName() : "Inconnu";
     }
 
     public function getDishId()

@@ -18,7 +18,9 @@ class RoleSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'creation plat']);
         Permission::firstOrCreate(['name' => 'suppression plat']);
 
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole = Role::firstOrCreate(['name' => 'Admin']);
         $adminRole->givePermissionTo(['creation plat', 'suppression plat']);
+        
+        $userRole = Role::firstOrCreate(['name' => 'Utilisateur']);
     }
 }

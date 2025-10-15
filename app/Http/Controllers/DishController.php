@@ -72,11 +72,9 @@ class DishController extends Controller
 
                     file_put_contents($tempPath, $contents);
 
-
                     if (!file_exists(public_path('images'))) {
                         mkdir(public_path('images'), 0777, true);
                     }
-
 
                     $newFilePath = public_path('images/' . $filename);
                     rename($tempPath, $newFilePath);
@@ -135,11 +133,4 @@ class DishController extends Controller
         $dish->update($request->all());
         return redirect()->route('home');
     }
-
-    // public function destroy(Dish $dish)
-    // {
-    //     $this->authorize('suppression plat');
-    //     $dish->delete();
-    //     return redirect()->route('home')->with('success', 'Recette supprimée.');
-    // }
 }

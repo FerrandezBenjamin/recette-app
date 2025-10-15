@@ -28,4 +28,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->name;
     }
+
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    public function getFullName()
+    {
+        return $this->getName() . " " . $this->getSurname();
+    }
 }
