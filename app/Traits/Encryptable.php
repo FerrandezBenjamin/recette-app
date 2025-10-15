@@ -2,26 +2,20 @@
 
 namespace App\Traits;
 
+use App\Casts\EncryptCast;
+
 trait Encryptable
 {
-    // protected $encryptable = [];
+    protected $encryptable = ['dishes_description'];
 
-    public function setAttribute($key, $value)
+    protected function initializeEncryptable(): void
     {
-        if (in_array($key, $this->encryptable) && !is_null($value)) {
-            $value = encrypt($value);
+        if (empty($this->encryptable) || !is_array($this->encryptable)) {
+            return;
         }
 
-        return parent::setAttribute($key, $value);
-    }
-
-    public function getAttribute($key)
-    {
-        $value = parent::getAttribute($key);
-        if (in_array($key, $this->encryptable) && !is_null($value)) {
-            $value = decrypt($value);
+        foreach ($this->encryptable as $field) {
+            $this->casts[$field] = EncryptCast::class;
         }
-
-        return $value;
     }
 }
