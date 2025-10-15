@@ -87,12 +87,34 @@ body {
 
 }
 
+.min-p
+{
+  position: relative;
+}
+
+.container-gg
+{
+  width: clamp(600px, 75%, 1200px);
+  height: 600px;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-gg >h1 
+{
+  text-align: center;
+  font-size: 3.5rem;
+}
+
 .dishes
 {
-  min-width: 50%;
-  background-color: #eeeeef;
-  padding: 2rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  flex-grow: 1;
 }
 
 .gap-my-first
@@ -280,4 +302,34 @@ body {
 .btn-delete:hover
 {
   background-color: #cd5353e9;
+}
+
+.btn-base-dish {
+  padding: 5px 10px;
+  color: rgb(241, 240, 240);
+  background-color: #6b4f5c;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 0.1s ease;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  position: relative;
+
+}
+
+.btn-base-dish a {
+  text-decoration: none;
+  color: rgb(241, 240, 240);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.btn-base-dish:hover
+{
+  background-color: #ae8196;
 }
