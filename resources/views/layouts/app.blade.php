@@ -55,7 +55,7 @@
                         @else
                             <li class="flex-me">
 
-                                <a id="navbarDropdown" class="min-size-connect" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="min-size-connect" href="{{route('home')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -69,6 +69,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                                     @csrf
                                 </form>
+
+                                <a href="#">Inscription</a>
                                 
                             </li>
                         @endguest
