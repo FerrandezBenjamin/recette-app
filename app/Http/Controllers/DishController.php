@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
+use App\Notifications\DishCreatedNotification;
 
 class DishController extends Controller
 {
