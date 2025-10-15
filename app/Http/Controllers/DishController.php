@@ -33,75 +33,91 @@ class DishController extends Controller
     }
 
     public function recDish(Request $request)
-{
-    $request->validate([
-        'name' => 'nullable|string|max:255',
-        'description' => 'nullable|string|max:2048',
-        'image' => 'nullable|image|max:2048',
-    ]);
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:2048',
+            'image' => 'nullable|image|max:2048',
+        ]);
 
-    $faker = FakerFactory::create('fr_FR');
-    $faker->addProvider(new FakerRestaurantProvider($faker));
-    $faker->addProvider(new LoremFlickrProvider($faker));
+        $faker = FakerFactory::create('fr_FR');
+        $faker->addProvider(new FakerRestaurantProvider($faker));
+        $faker->addProvider(new LoremFlickrProvider($faker));
 
-    $name = $request->input('name') ?: $faker->foodName();
-    $description = $request->input('description') ?: $faker->sentence();
+        $name = $request->input('name') ?: $faker->foodName();
+        $description = $request->input('description') ?: $faker->sentence();
 
-    $path = null;
+        $path = null;
 
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('images', 'public');
-    } else {
-        try {
-            $tmpFile = $faker->imageUrl(320, 240, ['dish']);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+        } else {
+            try {
+                $tmpFile = $faker->imageUrl(320, 240, ['dish']);
 
-            if (empty($tmpFile) || str_contains($tmpFile, "\0")) {
-                $tmpFile = "https://picsum.photos/320/240?random=" . rand(1, 9999);
-            }
-
-            $headers = get_headers($tmpFile);
-            if (!$headers || strpos($headers[0], '200') === false) {
-                $tmpFile = "https://picsum.photos/320/240?random=" . rand(1, 9999);
-            }
-
-            $contents = file_get_contents($tmpFile);
-
-            if ($contents !== false) {
-                $filename = 'dish_' . uniqid() . '.jpg';
-                $tempPath = storage_path('app/tmp_' . $filename);
-
-                file_put_contents($tempPath, $contents);
-
-
-                if (!file_exists(public_path('images'))) {
-                    mkdir(public_path('images'), 0777, true);
+                if (empty($tmpFile) || str_contains($tmpFile, "\0")) {
+                    $tmpFile = "https://picsum.photos/320/240?random=" . rand(1, 9999);
                 }
 
+                $headers = get_headers($tmpFile);
+                if (!$headers || strpos($headers[0], '200') === false) {
+                    $tmpFile = "https://picsum.photos/320/240?random=" . rand(1, 9999);
+                }
 
-                $newFilePath = public_path('images/' . $filename);
-                rename($tempPath, $newFilePath);
+                $contents = file_get_contents($tmpFile);
 
-                $path =  $filename;
-            } else {
+                if ($contents !== false) {
+                    $filename = 'dish_' . uniqid() . '.jpg';
+                    $tempPath = storage_path('app/tmp_' . $filename);
+
+                    file_put_contents($tempPath, $contents);
+
+
+                    if (!file_exists(public_path('images'))) {
+                        mkdir(public_path('images'), 0777, true);
+                    }
+
+
+                    $newFilePath = public_path('images/' . $filename);
+                    rename($tempPath, $newFilePath);
+
+                    $path =  $filename;
+                } else {
+                    $path = null;
+                }
+
+            } catch (\Exception $e) {
+                // \Log::error('Erreur lors de la génération d\'image : ' . $e->getMessage());
                 $path = null;
             }
-
-        } catch (\Exception $e) {
-            // \Log::error('Erreur lors de la génération d\'image : ' . $e->getMessage());
-            $path = null;
         }
+
+        $dish = \App\Models\Dish::create([
+            'dishes_name' => $name,
+            'dishes_description' => $description,
+            'dishes_image_path' => $path,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('display_all_dishes')->with('success', 'Recette créée avec succès !');
     }
 
-    // Création de la recette
-    $dish = \App\Models\Dish::create([
-        'dishes_name' => $name,
-        'dishes_description' => $description,
-        'dishes_image_path' => $path,
-        'user_id' => Auth::id(),
-    ]);
+    public function deleteDish(Request $req)
+    {
+        $this->authorize('suppression plat');
 
-    return redirect()->route('display_all_dishes')->with('success', 'Recette créée avec succès !');
-}
+        $value = $req->validate([
+            'id_dish' => 'required|exists:App\Models\Dish,id'
+        ]);
+
+        if($dishWas = Dish::find($value['id_dish'])) {
+            $dishWas->delete();
+            return redirect()->route('display_all_dishes')->with('success', 'Recette supprimée.');
+
+        } else {
+            return redirect()->route('display_all_dishes')->withErrors('message', "La recette n'a pas été trouvée" );
+        }
+    }
 
 
     public function show(Dish $dish)
@@ -120,10 +136,10 @@ class DishController extends Controller
         return redirect()->route('home');
     }
 
-    public function destroy(Dish $dish)
-    {
-        $this->authorize('suppression plat');
-        $dish->delete();
-        return redirect()->route('home')->with('success', 'Recette supprimée.');
-    }
+    // public function destroy(Dish $dish)
+    // {
+    //     $this->authorize('suppression plat');
+    //     $dish->delete();
+    //     return redirect()->route('home')->with('success', 'Recette supprimée.');
+    // }
 }

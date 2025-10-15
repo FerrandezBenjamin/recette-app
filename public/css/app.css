@@ -150,9 +150,11 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     width: 325px;
-    /* padding: 20px; */
     text-align: left;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dish:hover {
@@ -160,12 +162,6 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.dish h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: unset;
-    /* margin-bottom: 10px; */
-}
 
 .dish p {
     margin: 4px 0;
@@ -213,14 +209,15 @@ body {
   border-top-right-radius: 10px;
 }
 
-.title-dish > h3 {
+.title-dish > h3
+{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: black;
-  font-size: 1.7rem;
-  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  z-index: 2;
 }
 
 .title-dish > img
@@ -230,6 +227,8 @@ body {
   object-fit: contain;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  filter: blur(0.5px) brightness(0.6);
+  z-index: 1;
 }
 
 .span_createur
@@ -240,6 +239,7 @@ body {
   font-size: .8rem;
   text-align: left;
   font-style: italic;
+  z-index: 2;
 }
 
 .descri-dish 
@@ -250,4 +250,28 @@ body {
 .margin-b 
 {
   margin-bottom: 50px;
+}
+
+.delete-dish
+{
+  position: relative;
+  display: block;
+  bottom: 0;
+}
+
+.delete-dish form
+{
+  width: 100%;
+}
+
+.btn-delete
+{
+  width: 100%;
+  background-color: #d35d5dd1;
+  color: white;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }

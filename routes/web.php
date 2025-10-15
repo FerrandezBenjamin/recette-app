@@ -18,4 +18,5 @@ Route::middleware([ForceLogin::class])->group(function () {
     Route::get('/recette', [DishController::class, 'allDishes'])->name('display_all_dishes');
     Route::get('/recette/nouvelle', [DishController::class, 'displayCreateDish'])->name('display_new_dish');
     Route::post('/recette/nouvelle', [DishController::class, 'recDish'])->name('rec_dish');
+    Route::post('/recette/supprimer', [DishController::class, 'deleteDish'])->name('delete_dish');
 });

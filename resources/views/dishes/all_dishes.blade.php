@@ -25,6 +25,16 @@
                         <div class="descri-dish">
                             <p> <strong>Recette</strong> <br> {{ $d->getDescriptionDish()}}</p>
                         </div>
+
+                        <div class="delete-dish">
+                            <form action="{{route('delete_dish')}}" method="POST">
+                                @csrf
+
+                                <input type="hidden" value="{{$d->getDishId()}}" name="id_dish">
+
+                                <button type="submit" class="btn-delete">Supprimer</button>
+                            </form>
+                        </div>
                     </div>
 
                 @endforeach
