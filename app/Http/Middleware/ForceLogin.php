@@ -13,8 +13,6 @@ class ForceLogin
             return redirect('/login');
         }
 
-
-
         return $next($request);
     }
 }

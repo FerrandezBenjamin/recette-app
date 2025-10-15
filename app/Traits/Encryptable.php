@@ -4,7 +4,7 @@ namespace App\Traits;
 
 trait Encryptable
 {
-    protected $encryptable = [];
+    // protected $encryptable = [];
 
     public function setAttribute($key, $value)
     {
