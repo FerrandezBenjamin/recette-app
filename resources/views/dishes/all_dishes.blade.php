@@ -16,6 +16,7 @@
                 @foreach($allDishes as $d)
                 
                     <div class="dish">
+                        <span class="spanheart"><i class="fa-solid fa-heart colormyheart"></i></span>
                         <div class="title-dish">
                             <h3>{{ $d->getNameDish()}}</h3>
                             <img src="{{ asset('images/' . $d->getPathDish()) }}" alt="Echec">

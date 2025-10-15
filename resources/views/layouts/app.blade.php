@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -55,10 +56,11 @@
                         @else
                             <li class="flex-me">
 
-                                <a id="navbarDropdown" class="min-size-connect" href="{{route('home')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" href="{{route('home')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
+                                <a href="#">Inscription</a>
 
                                 <a class="min-size-connect btn-base" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -69,8 +71,6 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                                     @csrf
                                 </form>
-
-                                <a href="#">Inscription</a>
                                 
                             </li>
                         @endguest

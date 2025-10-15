@@ -177,6 +177,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 .dish:hover {
@@ -332,4 +333,27 @@ body {
 .btn-base-dish:hover
 {
   background-color: #ae8196;
+}
+
+.spanheart
+{
+  position: absolute;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  height: 25px;
+  z-index: 10;
+
+  right: 15px;
+  top: 10px;
+}
+
+.colormyheart
+{
+  color: white;
+
+}
+
+.spanheart:hover
+{
+  transform: scale(1.6);
 }
