@@ -24,7 +24,7 @@
 
                 <div>
                     <label for="description">La recette * <em class="maxs">(2048 caractères maximum)</em></label>
-                    <textarea id="description" name="description" class="form-control" placeholder="3 Oeufs..." maxlength="2048" value="{{$dishWas->getDescriptionDish()}}"></textarea>
+                    <textarea id="description" name="description" class="form-control" maxlength="2048">{{$dishWas->getDescriptionDish()}}</textarea>
                 </div>
 
                 <div class="place-img">
@@ -39,3 +39,17 @@
     </div>
 
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const textarea = document.getElementById('description');
+
+    function autoResize() {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    autoResize();
+    textarea.addEventListener('input', autoResize);
+});
+</script>

@@ -123,6 +123,11 @@ class DishController extends Controller
         $this->authorize('creation plat');
 
         if($dishWas = Dish::find($id)) {
+
+
+            // dd($dishWas->getDescriptionDish());
+
+
             return view('dishes.dish', compact([
                 'dishWas'
             ]));

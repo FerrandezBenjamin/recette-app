@@ -137,7 +137,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: clamp(350px, 50%, 600px);
+  width: clamp(350px, 75%, 850px);
   padding: 30px;
   background-color: #fff;
   border-radius: 12px;
