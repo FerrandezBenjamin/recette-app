@@ -2,9 +2,17 @@
 
 @section('content')
 
-    <div class="margin-b">
-        <div class="see-dishes btn-base">
-            <a href="{{ route('display_all_dishes') }}">Voir les recettes</a>
+    <div class="header-dishes">
+        <div class="see-dishes">
+
+            <div class="btn-base min-size-btn">
+                <a href="{{ route('display_new_dish') }}">Créer une recette</a>
+            </div>
+
+            <div class="btn-base min-size-btn">
+                <a href="{{ route('display_all_dishes') }}">Voir les recettes</a>
+            </div>
+
         </div>
         <h1>Modification de la recette</h1>
     </div>

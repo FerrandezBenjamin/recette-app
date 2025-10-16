@@ -409,3 +409,22 @@ button
 {
   border: none;
 }
+
+.header-dishes 
+{
+  display: flex;
+  padding: 15px 20px;
+  flex-direction: column;
+}
+
+.see-dishes
+{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.min-size-btn
+{
+  min-width: 175px;
+}
