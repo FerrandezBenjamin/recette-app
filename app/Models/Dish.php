@@ -10,6 +10,8 @@ class Dish extends Model
 {
     use HasFactory, Encryptable;
 
+    protected $table = "dishes";
+    protected $primaryKey = "dish_id";
     protected $fillable = ['dishes_name', 'dishes_description', 'dishes_image_path', 'user_id'];
     protected $encryptable = ['dishes_description'];
 
@@ -53,6 +55,18 @@ class Dish extends Model
             'dish_id',
             'id'
         );
+    }
+
+    public function favoredByDish()
+    {
+        return $this->hasMany(Dishesfavs::class, "dish_id");
+    }
+    
+
+    public function deleteCascade()
+    {
+        $this->favoredByDish()->delete();
+        return parent::delete();
     }
 
     

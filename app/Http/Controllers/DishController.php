@@ -106,11 +106,11 @@ class DishController extends Controller
         $this->authorize('suppression plat');
 
         $value = $req->validate([
-            'id_dish' => 'required|exists:App\Models\Dish,id'
+            'id_dish' => 'required|exists:App\Models\Dish,dish_id'
         ]);
 
         if($dishWas = Dish::find($value['id_dish'])) {
-            $dishWas->delete();
+            $dishWas->deleteCascade();
             return redirect()->route('display_all_dishes')->with('success', 'Recette supprimée.');
 
         } else {
