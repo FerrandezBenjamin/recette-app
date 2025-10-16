@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use FakerRestaurant\Provider\fr_FR\Restaurant;
 use Xvladqt\Faker\LoremFlickrProvider;
+use FakerRestaurant\Provider\fr_FR\Restaurant;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DishFactory extends Factory
 {

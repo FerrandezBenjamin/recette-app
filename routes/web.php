@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\DishController;
-use App\Http\Controllers\DishesFavsController;
+use App\Http\Middleware\ForceLogin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\HomeController;
-use App\Http\Middleware\ForceLogin;
+use App\Http\Controllers\DishesFavsController;
 
 Auth::routes(['verify' => true, 'reset' => false]);
 

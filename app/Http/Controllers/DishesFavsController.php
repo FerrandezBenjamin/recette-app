@@ -21,13 +21,4 @@ class DishesFavsController extends Controller
 
         }
     }
-
-
-    // public function removeFromFavorites($dishId)
-    // {
-    //     $user = auth()->user();
-    //     $user->favoriteDishes()->detach($dishId);
-
-    //     return response()->json(['message' => 'Plat retiré des favoris'], 200);
-    // }
 }
