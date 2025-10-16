@@ -30,9 +30,5 @@ class DishCreatedNotification extends Notification implements ShouldQueue
             ->subject('Votre recette est en ligne !')
             ->greeting('Bonjour,')
             ->line('Une nouvelle recette est maintenant disponible.');
-
-            
-            // ->line('Votre recette "' . $this->dish->getNameDish() . '" est maintenant disponible.')
-            // ->action('Voir ma recette', url('/dishes/' . $this->dish->getDishId()));
     }
 }

@@ -177,9 +177,6 @@ body {
     width: clamp(300px, 30%, 425px);
     text-align: left;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: space-between; */
     position: relative;
     height: 100%;
 }
@@ -188,11 +185,6 @@ body {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-/* .size_dish
-{
-  width: clamp(300px, 30%, 425px);
-} */
 
 .dish button 
 {
@@ -208,12 +200,6 @@ body {
   flex-grow: 1;
 }
 
-/* .dish p {
-    margin: 4px 0;
-    color: #555;
-    font-size: 0.95rem;
-} */
-
 .cards-row {
     display: flex;
     flex-direction: row;
@@ -221,8 +207,6 @@ body {
     flex-wrap: wrap;
     width: 100%;
     gap: 20px;
-    /* padding: 20px; */
-
 }
 
 .cards-row::-webkit-scrollbar {
@@ -342,13 +326,10 @@ a {
   background-color: #6b4f5c;
   text-align: center;
   text-decoration: none;
-  /* border-radius: 50%; */
   transition: background-color 0.1s ease;
   cursor: pointer;
   width: 125px;
   height: 100px;
-  /* width: clamp(100px, 25%, 200px);
-  height: clamp(100px, 45%, 200px); */
   position: relative;
 
 }
@@ -398,9 +379,6 @@ a {
 .place-img
 {
   width: 100%;
-  /* padding: 10px 12px; */
-  /* border: 1px solid #ccc; */
-  /* border-radius: 8px; */
 }
 
 .place-img > img
@@ -417,7 +395,6 @@ button
 .header-dishes 
 {
   display: flex;
-  /* padding: 15px 20px; */
   flex-direction: column;
   align-items: center;
   gap: 15px;
@@ -449,10 +426,6 @@ button
   width: 100%;
 }
 
-/* .min-size-btn
-{
-  min-width: 175px;
-} */
 
 nav[role="navigation"] {
   display: flex;

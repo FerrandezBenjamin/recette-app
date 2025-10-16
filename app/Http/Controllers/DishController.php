@@ -25,15 +25,12 @@ class DishController extends Controller
 
     public function allDishes()
     {
-        $user = auth()->user();
-
-        $all = Dish::with('favoredBy')->orderBy('dish_id')->get();
-
-        $sorted = $all->sortByDesc(fn($dish) => $user->favoriteDishes->contains($dish->getDishId()))->values();
-
-        $perPage = 10;
-        $page = request()->get('page', 1);
-        $items = $sorted->forPage($page, $perPage);
+        $user       = auth()->user();
+        $all        = Dish::with('favoredBy')->orderBy('dish_id')->get();
+        $sorted     = $all->sortByDesc(fn($dish) => $user->favoriteDishes->contains($dish->getDishId()))->values();
+        $perPage    = 10;
+        $page       = request()->get('page', 1);
+        $items      = $sorted->forPage($page, $perPage);
 
         $paginated = new LengthAwarePaginator(
             $items,
@@ -42,7 +39,6 @@ class DishController extends Controller
             $page,
             ['path' => request()->url(), 'query' => request()->query()]
         );
-
 
         return view('dishes.all_dishes', [
             'allDishes' => $paginated,
@@ -74,10 +70,9 @@ class DishController extends Controller
         $faker->addProvider(new FakerRestaurantProvider($faker));
         $faker->addProvider(new LoremFlickrProvider($faker));
 
-        $name = $request->input('name') ?: $faker->foodName();
+        $name        = $request->input('name') ?: $faker->foodName();
         $description = $request->input('description') ?: $faker->sentence();
-
-        $path = null;
+        $path        = null;
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
