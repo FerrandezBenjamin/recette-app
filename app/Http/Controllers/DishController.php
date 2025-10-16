@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Factory as FakerFactory;
-use Xvladqt\Faker\LoremFlickrProvider;
-use FakerRestaurant\Provider\fr_FR\Restaurant as FakerRestaurantProvider;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Dish;
+use Illuminate\Http\Request;
+use Faker\Factory as FakerFactory;
+use Illuminate\Support\Facades\Auth;
+use Xvladqt\Faker\LoremFlickrProvider;
+use Illuminate\Support\Facades\Storage;
 use App\Notifications\DishCreatedNotification;
+use Illuminate\Pagination\LengthAwarePaginator;
+use FakerRestaurant\Provider\fr_FR\Restaurant as FakerRestaurantProvider;
 
 class DishController extends Controller
 {
@@ -18,15 +19,33 @@ class DishController extends Controller
         $this->middleware('auth');
     }
 
+
     public function allDishes()
     {
-        // $allDishes = Dish::paginate(10);
-        $allDishes = Dish::orderBy('dish_id')->paginate(10);
+        $user = auth()->user();
 
-        return view('dishes.all_dishes', compact([
-            'allDishes'
-        ]));
+        $all = Dish::with('favoredBy')->orderBy('dish_id')->get();
+
+        $sorted = $all->sortByDesc(fn($dish) => $user->favoriteDishes->contains($dish->getDishId()))->values();
+
+        $perPage = 10;
+        $page = request()->get('page', 1);
+        $items = $sorted->forPage($page, $perPage);
+
+        $paginated = new LengthAwarePaginator(
+            $items,
+            $sorted->count(),
+            $perPage,
+            $page,
+        );
+
+        // dd($paginated);
+
+        return view('dishes.all_dishes', [
+            'allDishes' => $paginated,
+        ]);
     }
+
 
     public function displayCreateDish()
     {
