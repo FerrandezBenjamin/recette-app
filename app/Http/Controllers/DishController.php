@@ -40,7 +40,7 @@ class DishController extends Controller
             $sorted->count(),
             $perPage,
             $page,
-            ['path' => request()->url(), 'query' => request()->query()] // pour que les liens restent bons
+            ['path' => request()->url(), 'query' => request()->query()]
         );
 
 
