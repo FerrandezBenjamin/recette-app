@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use App\Mail\DishCreatedMail;
 use Faker\Factory as FakerFactory;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Xvladqt\Faker\LoremFlickrProvider;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +43,6 @@ class DishController extends Controller
             ['path' => request()->url(), 'query' => request()->query()] // pour que les liens restent bons
         );
 
-        // dd($paginated);
 
         return view('dishes.all_dishes', [
             'allDishes' => $paginated,
@@ -126,6 +127,8 @@ class DishController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        Mail::to(Auth::user()->email)->send(new DishCreatedMail($dish));
+
         return redirect()->route('display_all_dishes')->with('message', 'Recette créée avec succès !');
     }
 
@@ -146,11 +149,8 @@ class DishController extends Controller
         }
     }
 
-    // L'utilisateur a t-il droit de modifier une recette qui n'est pas 
     public function displayEditDish($id)
     {
-        // $this->authorize('creation plat');
-
         if($dishWas = Dish::find($id)) {
             return view('dishes.dish', compact([
                 'dishWas'
