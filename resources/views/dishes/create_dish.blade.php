@@ -10,9 +10,9 @@
 
     </div>
 
-    <div class="container flex-center flex-col">
+    <div class="container flex-center flex-col force-p-disabled">
 
-        <div class="container flex-center">
+        <div class="container flex-center force-p-disabled">
 
             <form action="{{ route('rec_dish') }}" method="POST" enctype="multipart/form-data" class="form-base">
                 @csrf
