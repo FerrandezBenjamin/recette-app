@@ -118,16 +118,27 @@ class DishController extends Controller
         }
     }
 
-
-    public function show(Dish $dish)
+    public function displayEditDish($id)
     {
-        return view('dishes.show', compact('dish'));
+        $this->authorize('creation plat');
+
+        if($dishWas = Dish::find($id)) {
+            return view('dishes.dish', compact([
+                'dishWas'
+            ]));
+        } else {
+            return redirect()->route('display_all_dishes')->withErrors('message', "La recette n'a pas été trouvée" );
+        }
     }
 
-    public function edit(Dish $dish)
+
+
+    public function editDish(Request $req)
     {
-        return view('dishes.edit', compact('dish'));
+        dd($req->all());
+        dd('coucou');
     }
+
 
     public function update(Request $request, Dish $dish)
     {

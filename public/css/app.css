@@ -167,17 +167,19 @@ body {
 }
 
 .dish {
+    position: relative;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    width: 325px;
+    width: clamp(300px, 30%, 425px);
     text-align: left;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
     position: relative;
+    height: 100%;
 }
 
 .dish:hover {
@@ -185,7 +187,12 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.dish > button 
+/* .size_dish
+{
+  width: clamp(300px, 30%, 425px);
+} */
+
+.dish button 
 {
   background-color: unset;
   border: none;
@@ -196,6 +203,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 /* .dish p {
@@ -277,10 +285,17 @@ body {
   z-index: 2;
 }
 
-.descri-dish 
+.descri-dish
 {
   padding: 20px;
+
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
 
 .margin-b 
 {
@@ -290,7 +305,9 @@ body {
 .delete-dish
 {
   display: flex;
-  flex-grow: 1;
+  background-color: #d35d5dd1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .delete-dish form
@@ -372,4 +389,23 @@ body {
 .spanheart:hover
 {
   transform: scale(1.6);
+}
+
+.place-img
+{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.place-img > img
+{
+  object-fit: cover;
+  width: 100%;
+}
+
+button 
+{
+  border: none;
 }
