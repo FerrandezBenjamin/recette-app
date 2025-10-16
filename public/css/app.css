@@ -77,7 +77,7 @@ body {
 
 .container-base
 {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -95,6 +95,7 @@ body {
 .container-gg
 {
   width: clamp(600px, 75%, 1200px);
+  margin-top: 5%;
   height: 600px;
   padding: 2rem;
   position: relative;

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="header-dishes">
-                <h1>{{$dishWas->getNameDish() }}</h1>
+        <h1>{{$dishWas->getNameDish() }}</h1>
         <div class="see-dishes">
             <div class="btn-base">
                 <a href="{{ route('display_new_dish') }}">Créer une recette</a>
@@ -13,7 +13,34 @@
                 <a href="{{ route('display_all_dishes') }}">Voir les recettes</a>
             </div>
         </div>
+    </div>
 
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container-fluid">
+                @if ($errors->any())
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <div>
+                        <p class="mb-0">{{$errors->first()}}</p>
+                    </div>
+                </div>
+
+                @endif
+                @if(Session::get('message'))
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    {{Session::get('message')}}
+                </div>
+                @endif
+                @yield('content')
+            </div>
+
+        </div>
     </div>
 
     <div class="container flex-center flex-col force-p-disabled">

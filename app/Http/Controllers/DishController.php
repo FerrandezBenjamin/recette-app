@@ -125,7 +125,7 @@ class DishController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('display_all_dishes')->with('success', 'Recette créée avec succès !');
+        return redirect()->route('display_all_dishes')->with('message', 'Recette créée avec succès !');
     }
 
     public function deleteDish(Request $req)
@@ -138,7 +138,7 @@ class DishController extends Controller
 
         if($dishWas = Dish::find($value['id_dish'])) {
             $dishWas->deleteCascade();
-            return redirect()->route('display_all_dishes')->with('success', 'Recette supprimée.');
+            return redirect()->route('display_all_dishes')->with('message', 'Recette supprimée.');
 
         } else {
             return redirect()->route('display_all_dishes')->withErrors('message', "La recette n'a pas été trouvée" );
