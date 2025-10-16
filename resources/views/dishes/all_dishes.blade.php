@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="margin-b">
-    <div class="create-dishes btn-base">
-        <a href="{{ route('display_new_dish') }}">Je veux créer une recette</a>
-    </div>
+<div class="card-top">
+
     <h1>Toute les recettes</h1>
+    <a href="{{ route('display_new_dish') }}" class="create-dishes btn-base create-r">Créer une recette</a>
+
 </div>
 
 <div class="flex-center flex-col">
