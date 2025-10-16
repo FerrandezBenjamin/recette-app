@@ -20,7 +20,8 @@ class DishController extends Controller
 
     public function allDishes()
     {
-        $allDishes = Dish::paginate(10);
+        // $allDishes = Dish::paginate(10);
+        $allDishes = Dish::orderBy('dish_id')->paginate(10);
 
         return view('dishes.all_dishes', compact([
             'allDishes'

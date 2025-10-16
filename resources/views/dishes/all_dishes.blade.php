@@ -44,6 +44,7 @@
         </div>
     @endforeach
     </div>
+    {{ $allDishes->links() }}
 </div>
 
 <script>
