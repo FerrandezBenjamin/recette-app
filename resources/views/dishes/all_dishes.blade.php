@@ -18,7 +18,7 @@
                     @php
                         $isFav = auth()->check() && auth()->user()->favoriteDishes->contains('dish_id', $d->getDishId());
                     @endphp
-                    <i class="fa-solid fa-heart {{ $isFav ? 'colormyheart' : 'colormyheartwasfav' }}"></i>
+                    <i class="fa-solid fa-heart {{ $isFav ? 'colormyheartwasfav' : 'colormyheart' }}"></i>
                 </button>
             </div>
 
@@ -50,42 +50,38 @@
     document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.favorite-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
+            e.stopPropagation();
+            e.preventDefault();
 
-        const dishId = this.dataset.id;
-        const icon = this.querySelector('i');
+            const dishId = this.dataset.id;
+            const icon = this.querySelector('i');
 
-        fetch(`/plat/${dishId}/favorite`, {
-            method: 'POST',
-            headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({}) // corps vide si besoin
-        })
-        .then(res => {
-            // debug réseau si problème
-            // console.log('status', res.status);
-            return res.json().then(data => ({ status: res.status, body: data }));
-        })
-        .then(({ status, body }) => {
-            if (status === 200) {
-            // 200 = ajouté aux favoris (ajuster si ton contrôleur fait l'inverse)
-            icon.classList.add('colormyheart');
-            icon.classList.remove('colormyheartwasfav');
-            } else if (status === 201) {
-            // 201 = retiré des favoris
-            icon.classList.add('colormyheartwasfav');
-            icon.classList.remove('colormyheart');
-            } else {
-            console.warn('Unexpected status', status, body);
-            }
-        })
-        .catch(err => {
-            console.error('Fetch error', err);
-        });
+            fetch(`/plat/${dishId}/favorite`, {
+                method: 'POST',
+                headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(res => {
+                return res.json().then(data => ({ status: res.status, body: data }));
+            })
+            .then(({ status, body }) => {
+                if (status === 200) {
+                    icon.classList.add('colormyheartwasfav');
+                    icon.classList.remove('colormyheart');
+                } else if (status === 201) {
+                    icon.classList.add('colormyheart');
+                    icon.classList.remove('colormyheartwasfav');
+                } else {
+                console.warn('Unexpected status', status, body);
+                }
+            })
+            .catch(err => {
+                console.error('Fetch error', err);
+            });
         });
     });
 });

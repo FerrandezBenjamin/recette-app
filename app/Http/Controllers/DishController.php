@@ -123,11 +123,6 @@ class DishController extends Controller
         $this->authorize('creation plat');
 
         if($dishWas = Dish::find($id)) {
-
-
-            // dd($dishWas->getDescriptionDish());
-
-
             return view('dishes.dish', compact([
                 'dishWas'
             ]));
@@ -140,8 +135,23 @@ class DishController extends Controller
 
     public function editDish(Request $req)
     {
-        dd($req->all());
-        dd('coucou');
+
+        $values = $req->validate([
+            'id_dish' => 'required',
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        if($dishWas = Dish::find($values['id_dish']))
+        {   
+            $dishWas->dishes_name           = $values['name'];
+            $dishWas->dishes_description    = $values['description'];
+            $dishWas->update();
+
+            return redirect()->route('display_all_dishes')->with('message', 'La recette a bien été modifié');
+        } else {
+            return redirect()->route('display_all_dishes')->withErrors("La recette n'a pas été trouvée");
+        }
     }
 
 
