@@ -10,6 +10,7 @@ use Xvladqt\Faker\LoremFlickrProvider;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\DishCreatedNotification;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Auth\Access\AuthorizationException;
 use FakerRestaurant\Provider\fr_FR\Restaurant as FakerRestaurantProvider;
 
 class DishController extends Controller
@@ -49,8 +50,14 @@ class DishController extends Controller
 
     public function displayCreateDish()
     {
-        $this->authorize('creation plat');
-        return view('dishes.create_dish');
+        try {
+            $this->authorize('creation plat');
+            return view('dishes.create_dish');
+        } catch (AuthorizationException $e) {
+            return redirect()
+                ->route('display_all_dishes')
+                ->withErrors("Vous n'avez pas les droits");
+        }
     }
 
     public function recDish(Request $request)
@@ -138,9 +145,10 @@ class DishController extends Controller
         }
     }
 
+    // L'utilisateur a t-il droit de modifier une recette qui n'est pas 
     public function displayEditDish($id)
     {
-        $this->authorize('creation plat');
+        // $this->authorize('creation plat');
 
         if($dishWas = Dish::find($id)) {
             return view('dishes.dish', compact([

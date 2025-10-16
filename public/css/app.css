@@ -133,6 +133,12 @@ body {
   justify-content: space-around;
 }
 
+.force-p-disabled
+{
+  padding-left: unset!important;
+  padding-right: unset!important;
+}
+
 .form-base {
   display: flex;
   flex-direction: column;
@@ -394,9 +400,9 @@ a {
 .place-img
 {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  /* padding: 10px 12px; */
+  /* border: 1px solid #ccc; */
+  /* border-radius: 8px; */
 }
 
 .place-img > img
@@ -413,14 +419,18 @@ button
 .header-dishes 
 {
   display: flex;
-  padding: 15px 20px;
+  /* padding: 15px 20px; */
   flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .see-dishes
 {
   display: flex;
   justify-content: space-around;
+  gap: 25px;
 
 }
 
@@ -440,10 +450,11 @@ button
 {
   width: 100%;
 }
-.min-size-btn
+
+/* .min-size-btn
 {
   min-width: 175px;
-}
+} */
 
 nav[role="navigation"] {
   display: flex;
