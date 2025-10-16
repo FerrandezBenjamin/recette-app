@@ -25,7 +25,7 @@ class Dish extends Model
 
     public function getDishId()
     {
-        return $this->id;
+        return $this->dish_id;
     }
 
     public function getNameDish()
@@ -41,6 +41,18 @@ class Dish extends Model
     public function getPathDish()
     {
         return $this->dishes_image_path;
+    }
+
+    public function favoredBy()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'dishes_favs',
+            'dish_id',
+            'user_id',
+            'dish_id',
+            'id'
+        );
     }
 
     

@@ -185,12 +185,24 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.dish > button 
+{
+  background-color: unset;
+  border: none;
+}
 
-.dish p {
+.flexbetw
+{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* .dish p {
     margin: 4px 0;
     color: #555;
     font-size: 0.95rem;
-}
+} */
 
 .cards-row {
     display: flex;
@@ -277,14 +289,14 @@ body {
 
 .delete-dish
 {
-  position: relative;
-  display: block;
-  bottom: 0;
+  display: flex;
+  flex-grow: 1;
 }
 
 .delete-dish form
 {
   width: 100%;
+  margin: unset;
 }
 
 .btn-delete
@@ -340,7 +352,7 @@ body {
   position: absolute;
   transition: transform 0.2s ease;
   cursor: pointer;
-  height: 25px;
+  height: 35px;
   z-index: 10;
 
   right: 15px;
@@ -351,6 +363,11 @@ body {
 {
   color: white;
 
+}
+
+.colormyheartwasfav
+{
+  color: red;
 }
 
 .spanheart:hover

@@ -21,6 +21,7 @@ class DishController extends Controller
     public function allDishes()
     {
         $allDishes = Dish::paginate(10);
+
         return view('dishes.all_dishes', compact([
             'allDishes'
         ]));

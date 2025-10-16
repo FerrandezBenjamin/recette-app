@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\DishesFavsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -19,4 +20,6 @@ Route::middleware([ForceLogin::class])->group(function () {
     Route::get('/recette/nouvelle', [DishController::class, 'displayCreateDish'])->name('display_new_dish');
     Route::post('/recette/nouvelle', [DishController::class, 'recDish'])->name('rec_dish');
     Route::post('/recette/supprimer', [DishController::class, 'deleteDish'])->name('delete_dish');
+    Route::post('/dishes/{id}/favorite', [DishesFavsController::class, 'addToFavorites'])->name('dishes.favorite');
+
 });

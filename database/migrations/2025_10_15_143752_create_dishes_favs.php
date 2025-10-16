@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dishes', function (Blueprint $table) {
-            $table->id('dish_id');
-            $table->string('dishes_name');
-            $table->text('dishes_description');
-            $table->string('dishes_image_path')->nullable();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        Schema::create('dishes_favs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\User::class, 'user_id');
+            $table->foreignIdFor(\App\Models\Dish::class, 'dish_id');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dishes');
+        Schema::dropIfExists('dishes_favs');
     }
 };

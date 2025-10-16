@@ -39,8 +39,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->getName() . " " . $this->getSurname();
     }
 
-    public function getAllFavs()
+    // public function favoriteDishes()
+    // {
+    //     return $this->belongsToMany(Dish::class, 'dish_id', 'dishes_favs', 'dish_id', 'user_id', 'dish_id')->withTimestamps();
+    // }
+    
+    public function favoriteDishes()
     {
-        dd('a faire');
+        return $this->belongsToMany(
+            Dish::class,
+            'dishes_favs',
+            'user_id',
+            'dish_id',
+            'id',
+            'dish_id'
+        );
     }
+
 }
