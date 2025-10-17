@@ -192,7 +192,6 @@ class DishController extends Controller
 
         $count = max(1, min($count, 100));
 
-        // Génération des plats
         \App\Models\Dish::factory()->count($count)->create();
 
         return redirect()
