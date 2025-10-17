@@ -19,7 +19,7 @@ class DishController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 
@@ -49,7 +49,7 @@ class DishController extends Controller
     public function displayCreateDish()
     {
         try {
-            $this->authorize('creation plat');
+            // $this->authorize('creation plat');
             return view('dishes.create_dish');
         } catch (AuthorizationException $e) {
             return redirect()

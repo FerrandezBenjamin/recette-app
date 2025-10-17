@@ -1,0 +1,42 @@
+### Récupérer toutes les recettes
+GET http://127.0.0.1:8000/api/rest/dishes
+Accept: application/json
+
+
+### Récupérer une recette par ID
+GET http://127.0.0.1:8000/api/rest/dishes/1
+Accept: application/json
+
+
+### Créer une nouvelle recette
+POST http://127.0.0.1:8000/api/rest/dishes
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Tarte aux pommes",
+  "description": "Simple et rapide",
+  "time": 45
+}
+
+
+### Mettre à jour une recette existante
+PUT http://127.0.0.1:8000/api/rest/dishes/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Tarte aux pommes revisitée",
+  "description": "Avec de la cannelle"
+}
+
+
+### Supprimer une recette
+DELETE http://127.0.0.1:8000/api/rest/dishes/1
+Accept: application/json
+
+
+
+### Récupérer un user par ID
+GET http://127.0.0.1:8000/api/users
+Accept: application/json

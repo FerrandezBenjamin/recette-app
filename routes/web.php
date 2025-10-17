@@ -7,13 +7,14 @@ use App\Http\Controllers\DishController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DishesFavsController;
 
-Auth::routes(['verify' => true, 'reset' => false]);
+// Auth::routes(['verify' => true, 'reset' => false]);
+Auth::routes();
 
 Route::get('/', function () {
     return redirect('/home');
 });
 
-Route::middleware([ForceLogin::class])->group(function () {
+// Route::middleware([ForceLogin::class])->group(function () {
     Route::get('/', fn() => redirect('/home'));
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -34,4 +35,4 @@ Route::middleware([ForceLogin::class])->group(function () {
     Route::get('/recette/{id}', [DishController::class, 'displayEditDish'])->name('dish');
     Route::post('/recette/update', [DishController::class, 'editDish'])->name('edit_dish');
 
-});
+// });
