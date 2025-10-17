@@ -15,10 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         // Forcer Accept: application/json handling de Lomkit
-        $middleware->append(EnforceExpectsJson::class);
+        // $middleware->append(EnforceExpectsJson::class);
 
         // groupe api
         $middleware->group('api', [
+            EnforceExpectsJson::class,
             SubstituteBindings::class,
         ]);
 
