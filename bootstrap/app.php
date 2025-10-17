@@ -23,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
             SubstituteBindings::class,
         ]);
 
+        $middleware->web(append: [
+            \App\Http\Middleware\HandleInertiaRequests::class,
+        ]);
+
         // alias utiles
         $middleware->alias([
             'bindings' => SubstituteBindings::class,

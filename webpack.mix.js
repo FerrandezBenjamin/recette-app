@@ -1,5 +1,5 @@
 import mix from 'laravel-mix';
 
-mix.js('public/js/app.js', 'public/js')
-   .postCss('public/css/app.css', 'public/css')
+mix.js('resources/js/app.js', 'public/js')
+   .postCss('resources/css/app.css', 'public/css')
    .version();
