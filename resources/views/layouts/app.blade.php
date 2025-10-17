@@ -67,6 +67,10 @@
                         @else
                             <li class="flex-me">
 
+                                <a id="navbarDropdown" href="{{ url('/nova')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Gestion des utilisateurs via  <b>Nova</b>
+                                </a>
+
                                 <a id="navbarDropdown" href="{{route('home')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>

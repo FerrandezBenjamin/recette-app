@@ -10,8 +10,6 @@ use App\Http\Controllers\DishesFavsController;
 Auth::routes(['verify' => true, 'reset' => false]);
 // Auth::routes();
 
-Route::get('/test', fn() => inertia('Welcome'));
-
 Route::get('/', function () {
     return redirect('/home');
 });

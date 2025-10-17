@@ -9,41 +9,45 @@
 
 
 <div class="flex-center flex-col">
-    <div class="cards-row">
-    @foreach($allDishes as $d)
-        <div class="dish">
-            <div class="dish-actions">
-                <button class="spanheart favorite-btn" data-id="{{ $d->getDishId() }}" type="button">
-                    @php
-                        $isFav = auth()->check() && auth()->user()->favoriteDishes->contains('dish_id', $d->getDishId());
-                    @endphp
-                    <i class="fa-solid fa-heart {{ $isFav ? 'colormyheartwasfav' : 'colormyheart' }}"></i>
-                </button>
-            </div>
-
-            <a href="{{ route('dish', ['id' => $d->getDishId()]) }}" class="dish-link">
-                <div class="title-dish">
-                    <h3>{{ $d->getNameDish() }}</h3>
-                    <img src="{{ asset('images/' . $d->getPathDish()) }}" alt="Echec">
-                    <span class="span_createur">Créateur : {{ $d->getCreateur() }}</span>
+    @if($allDishes->count() >0 )
+        <div class="cards-row">
+        @foreach($allDishes as $d)
+            <div class="dish">
+                <div class="dish-actions">
+                    <button class="spanheart favorite-btn" data-id="{{ $d->getDishId() }}" type="button">
+                        @php
+                            $isFav = auth()->check() && auth()->user()->favoriteDishes->contains('dish_id', $d->getDishId());
+                        @endphp
+                        <i class="fa-solid fa-heart {{ $isFav ? 'colormyheartwasfav' : 'colormyheart' }}"></i>
+                    </button>
                 </div>
 
-                <div class="descri-dish">
-                    <p><strong>Recette</strong><br>{{ $d->getDescriptionDish() }}</p>
-                </div>
-            </a>
+                <a href="{{ route('dish', ['id' => $d->getDishId()]) }}" class="dish-link">
+                    <div class="title-dish">
+                        <h3>{{ $d->getNameDish() }}</h3>
+                        <img src="{{ asset('images/' . $d->getPathDish()) }}" alt="Echec">
+                        <span class="span_createur">Créateur : {{ $d->getCreateur() }}</span>
+                    </div>
 
-            <div class="delete-dish">
-                <form action="{{ route('delete_dish') }}" method="POST">
-                    @csrf
-                    <input type="hidden" value="{{ $d->getDishId() }}" name="id_dish">
-                    <button type="submit" class="btn-delete">Supprimer</button>
-                </form>
+                    <div class="descri-dish">
+                        <p><strong>Recette</strong><br>{{ $d->getDescriptionDish() }}</p>
+                    </div>
+                </a>
+
+                <div class="delete-dish">
+                    <form action="{{ route('delete_dish') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{ $d->getDishId() }}" name="id_dish">
+                        <button type="submit" class="btn-delete">Supprimer</button>
+                    </form>
+                </div>
             </div>
+        @endforeach
         </div>
-    @endforeach
-    </div>
-    {{ $allDishes->links() }}
+        {{ $allDishes->links() }}
+    @else
+        <h2>Aucune recette trouvée pour le moment !</h2>
+    @endif
 </div>
 
 <script>
