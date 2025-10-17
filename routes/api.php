@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Lomkit\Rest\Facades\Rest;
-use App\Rest\Controllers\UsersController;
+use App\Rest\Resources\UserResource;
 
-Rest::resource('users', UsersController::class);
+Rest::resource('users', UserResource::class);

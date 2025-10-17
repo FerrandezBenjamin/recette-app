@@ -12,9 +12,10 @@
         "php": "^8.2",
         "jzonta/faker-restaurant": "^2.0",
         "laravel/framework": "^12.0",
+        "laravel/scout": "^10.20",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",
-        "lomkit/laravel-rest-api": "^2.17",
+        "lomkit/laravel-rest-api": "dev-main",
         "spatie/laravel-permission": "^6.21",
         "xvladqt/faker-lorem-flickr": "^1.0"
     },
