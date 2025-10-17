@@ -3,11 +3,10 @@
 @section('content')
 
     <div class="card-top">
-                <h1>Créer une recette</h1>
+        <h1>Créer une recette</h1>
         <div class="see-dishes btn-base">
             <a href="{{ route('display_all_dishes') }}">Voir les recettes</a>
         </div>
-
     </div>
 
     <div class="container flex-center flex-col force-p-disabled">

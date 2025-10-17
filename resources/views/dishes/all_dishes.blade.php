@@ -4,6 +4,12 @@
 
 <div class="card-top">
     <h1>Toute les recettes</h1>
+
+    <form action="{{ route('generate_dishes') }}" method="GET" class="inline-form">
+        <input type="number" name="count" class="form-control" min="1" max="100" value="10">
+        <button type="submit" class="create-dishes btn-base create-r">Générer des recettes</button>
+    </form>
+    
     <a href="{{ route('display_new_dish') }}" class="create-dishes btn-base create-r">Créer une recette</a>
 </div>
 

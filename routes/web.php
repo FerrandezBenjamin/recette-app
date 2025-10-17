@@ -35,4 +35,8 @@ Route::middleware([ForceLogin::class])->group(function () {
     Route::get('/recette/{id}', [DishController::class, 'displayEditDish'])->name('dish');
     Route::post('/recette/update', [DishController::class, 'editDish'])->name('edit_dish');
 
+
+    Route::get('/recettes/generation', [DishController::class, 'generateDishes'])->name('generate_dishes');
+
+
 });

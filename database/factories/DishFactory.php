@@ -16,9 +16,9 @@ class DishFactory extends Factory
         $faker->addProvider(new LoremFlickrProvider($faker));
 
         return [
-            'name' => $faker->foodName(),
-            'description' => $faker->text(200),
-            'image_path' => $faker->imageUrl(320, 240, 'dish'),
+            'dishes_name' => $faker->foodName(),
+            'dishes_description' => $faker->text(200),
+            'dishes_image_path' => $faker->imageUrl(320, 240, 'dish'),
             'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
         ];
     }

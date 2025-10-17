@@ -184,4 +184,20 @@ class DishController extends Controller
         $dish->update($request->all());
         return redirect()->route('home');
     }
+
+
+    public function generateDishes(Request $request)
+    {
+        $count = (int) $request->query('count', 10);
+
+        $count = max(1, min($count, 100));
+
+        // Génération des plats
+        \App\Models\Dish::factory()->count($count)->create();
+
+        return redirect()
+            ->route('display_all_dishes')
+            ->with('message', "{$count} recettes générées avec succès.");
+    }
+
 }

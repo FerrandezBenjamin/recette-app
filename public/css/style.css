@@ -409,6 +409,13 @@ button
 
 }
 
+.inline-form
+{
+    display: flex;
+    gap: 5px;
+    width: clamp(300px, 40%, 500px);
+}
+
 .card-top
 {
   display: flex;
@@ -418,6 +425,7 @@ button
   flex-direction: column;
   padding: 10px 12px;
   margin-bottom: 25px;
+  gap: 5px;
 }
 
 
