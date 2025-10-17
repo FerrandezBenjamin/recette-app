@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Encryptable;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Dish extends Model
 {
-    use HasFactory, Encryptable;
+    use HasFactory, Encryptable, Searchable;
 
     protected $table = "dishes";
     protected $primaryKey = "dish_id";
