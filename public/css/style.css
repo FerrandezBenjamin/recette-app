@@ -80,7 +80,19 @@ body {
 {
   padding: 1rem;
   background-color: #f5f5f5;
+  flex-grow: 1;
+}
 
+.pre-top
+{
+  width: 100%;
+  height: 65px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.575);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 55px;
 }
 
 .min-p
@@ -90,13 +102,13 @@ body {
 
 .container-gg
 {
-  margin-top: 5%;
-  height: 600px;
+  /* margin-top: 5%; */
+  /* height: 600px; */
   padding: 2rem;
   position: relative;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .container-gg >h1 
@@ -111,6 +123,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 25px;
+  width: 80%;
+  /* width: clamp(300px, 40%, 500px); */
 }
 
 .gap-my-first
@@ -322,21 +336,37 @@ a {
 
 .btn-base-dish {
   padding: 5px 10px;
-  color: rgb(241, 240, 240);
-  background-color: #6b4f5c;
+  /* color: rgb(241, 240, 240); */
+  color: black;
+  /* background-color: #6b4f5c; */
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.1s ease;
+  transition: box-shadow 0.1s ease;
   cursor: pointer;
-  width: 125px;
+  width: 325px;
   height: 100px;
   position: relative;
+  border-radius: 16px;
+  border: 1px solid rgb(0, 0, 0);
+}
 
+.btn-base-dish:hover
+{
+  box-shadow: 
+ -2px 0 2px #227226,   /* gauche en vert */
+    2px 0 2px #178AEB,    /* droite en bleu */
+    0 -2px 2px #6F1972,   /* haut en violet */
+    0 2px 2px #227256,    /* bas en vert */
+    -2px -2px 2px #178AEB, /* coin haut gauche en bleu */
+    2px -2px 2px #6F1972,  /* coin haut droit en violet */
+    -2px 2px 2px #178AEB,  /* coin bas gauche en bleu */
+    2px 2px 2px #6F1973
+  /* background-color: #ae8196; */
 }
 
 .btn-base-dish a {
   text-decoration: none;
-  color: rgb(241, 240, 240);
+  /* color: rgb(241, 240, 240); */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -344,10 +374,7 @@ a {
 }
 
 
-.btn-base-dish:hover
-{
-  background-color: #ae8196;
-}
+
 
 .spanheart
 {
@@ -460,4 +487,33 @@ nav[role="navigation"] a:hover {
   background: #f5f5f5;
   color: #000;
   border-color: #ccc;
+}
+
+
+.flexx
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bvn h1::after
+{
+  content:'Bienvenue dans mon créateur de recette !';
+  animation : words 6s infinite;
+}
+
+@keyframes words
+{
+  0%, 33%
+  {
+    content:'vous pouvez créer une recette';
+    color: #6F1972;
+  }
+
+    34%, 64%
+  {
+    content:'ou bien voir celle déjà créée !';
+    color: rgb(23, 23, 165);
+  }
 }

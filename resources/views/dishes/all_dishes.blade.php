@@ -2,6 +2,11 @@
 
 @section('content')
 
+<div class="pre-top">
+    <a href="{{ route('display_new_dish') }}" class="create-dishes btn-base create-r">Créer une recette</a>
+    <a href="{{ url('/home') }}" class="create-dishes btn-base create-r">Menu principal</a>
+</div>
+
 <div class="card-top">
     <h1>Toute les recettes</h1>
 
@@ -10,7 +15,6 @@
         <button type="submit" class="create-dishes btn-base create-r">Générer des recettes</button>
     </form>
     
-    <a href="{{ route('display_new_dish') }}" class="create-dishes btn-base create-r">Créer une recette</a>
 </div>
 
 
