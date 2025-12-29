@@ -35,17 +35,17 @@
 
 </head>
 <body>
-    <div id="app" class="base">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+    <div id="app" class="base flex-r">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm contain-nav-f">
+            <div class="flex-c">
+                <a class="force-wh" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse rangeme" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
@@ -57,27 +57,21 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
+                                    <a class="nav-link force-wh" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Enregistrement') }}</a>
+                                    <a class="nav-link force-wh" href="{{ route('register') }}">{{ __('Enregistrement') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="flex-me">
 
-                                <a id="navbarDropdown" href="{{ url('/nova')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Gestion des utilisateurs via  <b>Nova</b>
-                                </a>
-
                                 <a id="navbarDropdown" href="{{route('home')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
-                                <a href="#">Inscription</a>
 
                                 <a class="min-size-connect btn-base" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -89,6 +83,17 @@
                                     @csrf
                                 </form>
                                 
+
+                                <a id="navbarDropdown" href="{{ url('/nova')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Gestion des utilisateurs via  <b>Nova</b>
+                                </a>
+
+                                <a href="#">Inscription</a>
+
+
+
+
+                                
                             </li>
                         @endguest
                     </ul>
@@ -97,7 +102,7 @@
         </nav>
 
         <main class="container-base">
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column size-max zindexme">
                 <div id="content">
                     <div class="container-fluid">
                         @if ($errors->any())

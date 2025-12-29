@@ -8,7 +8,7 @@
 </div>
 
 <div class="card-top">
-    <h1>Toute les recettes</h1>
+    {{-- <h1>Toute les recettes</h1> --}}
 
     <form action="{{ route('generate_dishes') }}" method="GET" class="inline-form">
         <input type="number" name="count" class="form-control" min="1" max="100" value="10">
